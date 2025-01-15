@@ -1,0 +1,17 @@
+.header{
+    position: relative;
+    /* height: 450px; */
+    background-image: url("./../../Assets/headerimg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 30px auto;
+}
+.header-content{
+    position: absolute;
+    gap:30px;
+    /* max-width: 50%; */
+    bottom: 10%;
+    left: 60px;
+    color: white;
+    /* color: rgba(24, 23, 23, 0.856); */
+}

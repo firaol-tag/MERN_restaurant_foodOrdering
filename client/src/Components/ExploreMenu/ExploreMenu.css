@@ -1,0 +1,23 @@
+.menu_list{
+    gap: 30px;
+    margin: 20px 0;
+    overflow-x: scroll;
+
+}
+.menu_list::-webkit-scrollbar{
+    display: none;
+}
+.list_items p{
+    cursor: pointer;
+}
+.list_items img{
+    min-width: 80px;
+    transition: 0.2s;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.list_items .active{
+    border: 4px bold tomato;
+    padding: 2px;
+
+}

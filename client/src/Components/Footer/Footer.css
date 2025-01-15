@@ -1,0 +1,34 @@
+.footer{
+    padding: 20px 80px;
+    gap: 20px;
+}
+.footer-content{
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.footer-content-left, .footer-content-center, .footer-content-right{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+.footer-content-center li, .footer-content-right li{
+    list-style: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.footer-content-center h1, .footer-content-right h1{
+    color: white;
+font-size: 20px;
+font-weight: 500px;
+}
+.footer-social-media{
+    margin-right: 20px;
+}
+.footer-social-media img{
+    cursor: pointer;
+}
+.footer hr{
+    height: 2px;
+    border: none;
+    background-color: grey;
+}

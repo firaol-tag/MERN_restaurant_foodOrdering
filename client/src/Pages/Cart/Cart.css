@@ -1,0 +1,32 @@
+.cart-items{
+    margin: 100px 0px;
+}
+.cart hr{
+    border: none;
+    background-color: #e2e2e2;
+    height: 1px;
+}
+.cart-total hr{
+    margin: 10px 0px;
+}
+.cart-total  button{
+    background-color: tomato;
+    color: white;
+    width: max(15vw,200px);
+    border: none;
+}
+.promocode-input input{
+    outline: none;
+    border: none;
+}
+.promocode-input button{
+    width: max(10vw,150px);
+    border: none;
+    padding: 12px 5px;
+}
+.totals-details{
+    display: flex;
+  justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}

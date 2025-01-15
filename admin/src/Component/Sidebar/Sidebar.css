@@ -1,0 +1,16 @@
+.sidebar{
+    border-right: 1.5px solid #a9a9a9;
+    top:0;
+    
+}
+.sidebar-option{
+   border: 1.5px solid #a9a9a9;
+   left:0%;
+   right: 0%;
+   border-right: 0;
+   
+}
+.sidebar-option.active{
+    background-color: #fff0ed;
+    border-color: tomato;
+}

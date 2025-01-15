@@ -1,0 +1,38 @@
+.navbar-menu .li{
+    cursor: pointer;
+    transition: 0.2s;
+}
+.navbar-menu .li:hover{
+    padding-bottom: 2px;
+border-bottom: 2px solid gray;
+transition: 0.2s;
+}
+.active{
+    padding-bottom: 2px;
+border-bottom: 2px solid gray;
+
+}
+.search-icon{
+    position: relative;
+}
+.search-icon .dot{
+    position: absolute;
+    min-height: 10px;
+    min-width: 10px;
+    background-color: lightcoral;
+    top: -2px;
+    right: 130px;
+    border-radius: 5px;
+}
+.cont:hover .dropdown{
+    display: flex;
+    flex-direction: column;
+    padding: 12px 15px;
+    border:1px solid tomato;
+    outline: 2px solid white;
+    z-index: 1;
+    background-color: rgb(243, 241, 239);
+}
+/* .dropdown{
+    
+} */

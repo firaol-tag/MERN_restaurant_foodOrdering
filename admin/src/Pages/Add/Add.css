@@ -1,0 +1,9 @@
+.product-description textarea, .product-name input{
+    padding: 10px;
+    outline-color: rgb(97, 97, 97);
+    border: 1px solid rgb(180, 180, 180);
+}
+.product-category select,.product-price input{
+      outline-color: rgb(97, 97, 97);
+    border: 1px solid rgb(180, 180, 180);
+}

@@ -1,0 +1,24 @@
+.login-popup{
+    z-index: 1;
+    /* height: 100%; */
+}
+.popup-container{
+    place-self: center;
+    gap: 25px;
+    padding: 25px 30px;
+    width: max(23vw,330px);
+animation: fadeIn 0.5s;
+}
+.popup-inputs{
+    gap: 20px;
+}.popup-inputs input{
+    outline: none;
+    border: 1px solid #e9e9e9;
+    padding: 10px;
+    border-radius: 4px;
+}
+.bgt{background-color: tomato;}
+.tmt{
+    color: tomato;
+    cursor: pointer;
+}

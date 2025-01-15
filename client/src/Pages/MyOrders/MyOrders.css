@@ -1,0 +1,19 @@
+.orders{
+    margin-top: 50px 0px;
+}
+
+.orders .order{
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid tomato;
+}
+@media (max-width: 900px){
+   .orders .order{ grid-template-columns: 0.5fr 2fr 1fr;};
+   .orders img{
+    width: 5px;
+height: 5px;
+   }
+}

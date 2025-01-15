@@ -1,0 +1,11 @@
+.list_table_format{
+    /* display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr 1fr 0.5fr; */
+    gap: 10px;
+    align-items: center;
+    padding: 12px 15px;
+    width: 100%;
+}
+.list_table_format.title{
+    background-color: #acacac;
+}
