@@ -6,7 +6,7 @@ export const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState("");
   const [food_list, setFoodlist] = useState([]);
-  const url = "http://localhost:4000";
+  const url = "https://mern-restaurant-foodordering.onrender.com";
   console.log(token);
   console.log(cartItems)
   const itemI=0;
@@ -25,7 +25,7 @@ export const StoreContextProvider = (props) => {
     if (token) {
       axios
         .put(
-          "http://localhost:4000/api/cart/addtocart",
+          "https://mern-restaurant-foodordering.onrender.com/api/cart/addtocart",
           { itemId },
           { headers: { token } }
         )
@@ -38,7 +38,7 @@ export const StoreContextProvider = (props) => {
     if (token) {
       axios
         .put(
-          "http://localhost:4000/api/cart/removefromcart",
+          "https://mern-restaurant-foodordering.onrender.com/api/cart/removefromcart",
           { itemId },
           { headers: { token } }
         )
@@ -64,7 +64,7 @@ export const StoreContextProvider = (props) => {
   };
   const fetchFood = () => {
     axios
-      .get("http://localhost:4000/api/food/list")
+      .get("https://mern-restaurant-foodordering.onrender.com/api/food/list")
       .then((res) => {
         console.log(res.data);
         setFoodlist(res.data.data);
@@ -75,7 +75,7 @@ export const StoreContextProvider = (props) => {
   };
   const getCart=(token)=>{
     axios.post(
-      "http://localhost:4000/api/cart/getcart",{},
+      "https://mern-restaurant-foodordering.onrender.com/api/cart/getcart",{},
       { headers: { token } }
     )
     .then((res)=>{

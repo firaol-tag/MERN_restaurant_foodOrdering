@@ -10,7 +10,7 @@ const FoodItem = ({id,name,price,image,description}) => {
     <div className="food_item w-full m-auto border-md">
       <div className="food-item-image-container">
         <img
-          src={"http://localhost:4000" + image}
+          src={"https://mern-restaurant-foodordering.onrender.com" + image}
           alt=""
           className="food-item-image w-full h-40"
         />
