@@ -8,7 +8,7 @@ const userRouter = require("./server/API/user/user.router.js");
 const cartRouter = require("./server/API/cart/cart.router.js");
 const orderRouter = require("./server/API/orders/orders.router.js");
 const app = express();
-const port = 4000;
+const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 // connectDB();
@@ -31,6 +31,6 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
-app.listen(port,() => {
+app.listen(PORT,() => {
   console.log(`server run on port ${port}`);
 });
