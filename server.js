@@ -32,5 +32,5 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
 app.listen(PORT,() => {
-  console.log(`server run on port ${port}`);
+  console.log(`server run on port ${PORT}}`);
 });
