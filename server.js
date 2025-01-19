@@ -8,7 +8,7 @@ const userRouter = require("./server/API/user/user.router.js");
 const cartRouter = require("./server/API/cart/cart.router.js");
 const orderRouter = require("./server/API/orders/orders.router.js");
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT;
 app.use(express.json());
 app.use(cors());
 // connectDB();
