@@ -24,7 +24,7 @@ const Cart = () => {
           return (
             <div className="items-title items-item grid grid-cols-6 items-center">
               <img
-                src={"https://mern-restaurant-foodordering.onrender.com" + item.image}
+                src={"http://localhost:4000" + item.image}
                 alt=""
                 className="w-32 h-24 mt-4"
               />
