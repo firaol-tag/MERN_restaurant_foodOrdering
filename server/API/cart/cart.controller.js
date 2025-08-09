@@ -58,7 +58,7 @@ module.exports = {
           }
           return res.json({ success: true, message: "item removed from cart" });
         });
-      } 
+      }
       // else if (cart === 1) {
       //   const sql = "DELETE FROM cart WHERE user_id=? AND item_id";
       //   db.query(sql, [userId, itemId], (err, result) => {
@@ -67,7 +67,7 @@ module.exports = {
       //     }
       //     return res.json({ success: true, message: "item deleted from cart" });
       //   });
-      // } 
+      // }
       // else{
       //   console.log("error happens")
       // }
@@ -79,7 +79,11 @@ module.exports = {
       if (err) {
         return res.status(450).json({ success: false, message: err });
       }
-      return res.json({ success: true, message: "item in the cart fetched successfully",data:result });
+      return res.json({
+        success: true,
+        message: "item in the cart fetched successfully",
+        data: result,
+      });
     });
   },
 };

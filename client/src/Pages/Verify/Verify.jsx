@@ -9,9 +9,10 @@ const Verify = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const success = searchParams.get("success");
   const orderId = searchParams.get("amp;orderID");
-  const paymentVerification = () => {
-    axios
-      .put(`${url}/api/order/verifypayment`,{success,orderId })
+  const tx_ref = searchParams.get("amp;tx_ref");
+  const paymentVerification = async() => {
+    await axios
+      .put(`${url}/api/order/verifypayment`,{success,orderId,tx_ref })
       .then((res) => {
         if (res.data.success===true) {
           navigate("/myorders");

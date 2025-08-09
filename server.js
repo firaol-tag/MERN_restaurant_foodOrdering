@@ -7,8 +7,8 @@ const multer = require("multer");
 const userRouter = require("./server/API/user/user.router.js");
 const cartRouter = require("./server/API/cart/cart.router.js");
 const orderRouter = require("./server/API/orders/orders.router.js");
-const app = express();
 const PORT = process.env.PORT;
+const app = express();
 app.use(express.json());
 app.use(cors());
 // connectDB();
@@ -31,6 +31,9 @@ app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
-app.listen(PORT,() => {
-  console.log(`server run on port ${PORT}}`);
+app.listen(3040, (err, res) => {
+  if (err) {
+    console.log("server got some failure");
+  }
+  console.log("surver is successfully running");
 });

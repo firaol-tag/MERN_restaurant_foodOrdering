@@ -24,7 +24,7 @@ const Cart = () => {
           return (
             <div className="items-title items-item grid grid-cols-6 items-center">
               <img
-                src={"http://localhost:4000" + item.image}
+                src={"https://restaurant.waratechnology.com" + item.image}
                 alt=""
                 className="w-32 h-24 mt-4"
               />

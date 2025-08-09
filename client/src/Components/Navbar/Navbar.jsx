@@ -17,7 +17,6 @@ const Navbar = ({setShowLoginPopup}) => {
     <div className="items-center py-2">
       <div className="flex justify-between">
         <Link to={"/"}>
-          {" "}
           <img src={assets.logo} className="w-12 h-8" alt="" />
         </Link>
         <ul className="hidden md:flex md:gap-4 lg:gap-6 text-center items-center navbar-menu font-bold text-gray-600">

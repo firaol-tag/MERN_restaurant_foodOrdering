@@ -7,16 +7,16 @@ const List = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/food/list")
+      .get("https://restaurant.waratechnology.com/api/food/list")
       .then((res) => {
         console.log(res.data.data);
         setList(res.data.data);
       })
       .catch((err) => {});
   }, []);
-  const handleRemove = (id) => {
-    axios
-      .delete("http://localhost:4000/api/food/delete/" + id)
+  const handleRemove = async(id) => {
+    await axios
+      .delete("https://restaurant.waratechnology.com/api/food/delete/" + id)
       .then((res) => {
         console.log(res.data);
         toast.success(res.data.message);
@@ -44,7 +44,7 @@ const List = () => {
             className="bg-stone-100 list_table_format grid grid-cols-5"
           >
             <img
-              src={"http://localhost:4000" + item.image}
+              src={"https://restaurant.waratechnology.com" + item.image}
               className="w-28 h-28"
             />
             <p>{item.name}</p>

@@ -8,7 +8,7 @@ module.exports = {
     const image = `/upload/${imageFilename}`;
     const { name, description, price, category } = req.body;
     console.log(name, description, price, category);
-    console.log(image)
+    console.log(image);
     Addfood({ name, description, price, image, category }, (err, result) => {
       if (err) return res.status(432).json({ success: false, message: err });
       return res.json({ success: true, message: "food added" });
@@ -16,18 +16,58 @@ module.exports = {
   },
   listFood: (req, res) => {
     ListFood((err, result) => {
-      if (err) return res.status(432).json({ success: false, message: err });
-      // console.log(result);
-      res.json({ success: true, message: "food fetched", data: result });
+      if (err) {
+        return res.status(432).json({ success: false, message: err });
+      }
+      return res.json({ success: true, message: "food fetched", data: result });
     });
   },
-  deleteFood:(req,res)=>{
-    const id=req.params.id
+
+  deleteFood: (req, res) => {
+    const id = req.params.id;
     const sql = "DELETE FROM foods WHERE id=?";
-    db.query(sql, [id], (err, result) => {
-      if (err) return res.status(442).json({ success: false, message: err });
-      res.json({ success: true, message: "successfully deleted", data: result });
-      // fs.unlink(`upload/${food.image}`,()=>{})
-    });
-  }
+    db.query(
+      "SELECT image FROM foods WHERE id = ?",
+      [id],
+      (err, result) => {
+        if (err) {
+          return res.status(548).json({
+            success: false,
+            msg: "Error fetching foods data.",
+          });
+        }
+
+        if (!result || result.length === 0) {
+          return res.status(404).json({ msg: "food not found" });
+        }
+        console.log(result[0].blog_image);
+        // Construct the file path
+        const imagePath = path.join(
+          __dirname,
+          "../../../",
+          result[0].image
+        );
+
+        // Delete the image file
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error("Error deleting file:", err);
+            return res.status(500).json({ msg: "Failed to delete image file" });
+          }
+
+         db.query(sql, [id], (err, result) => {
+           if (err)
+             return res.status(442).json({ success: false, message: err });
+           res.json({
+             success: true,
+             message: "successfully deleted",
+             data: result,
+           });
+           // fs.unlink(`upload/${food.image}`,()=>{})
+         });
+        });
+      }
+    );
+    
+  },
 };

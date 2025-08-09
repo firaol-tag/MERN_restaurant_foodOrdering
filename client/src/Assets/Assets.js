@@ -61,7 +61,7 @@ export const menu_list = [
   {
     menu_name: "Injera Varieties",
     menu_image: menu6,
-  }
+  },
 ];
 export const food_list = [
   {

@@ -8,7 +8,7 @@ import {assets} from "./../../Assets/Assets"
 const Order = () => {
   const [data,setData]=useState([])
   const allOrders=()=>{
-  axios.get("http://localhost:4000/api/order/allorders")
+  axios.get("https://restaurant.waratechnology.com/api/order/allorders")
   .then((res)=>{
     console.log(res.data.data)
     const orders = res.data.data.map((order) => ({
@@ -23,7 +23,7 @@ const Order = () => {
   })
   }
   const handChange=(e,id)=>{
-axios.put("http://localhost:4000/api/order/status",{status:e.target.value,id})
+axios.put("https://restaurant.waratechnology.com/api/order/status",{status:e.target.value,id})
 .then((res)=>{
   console.log(res.data)
   allOrders()

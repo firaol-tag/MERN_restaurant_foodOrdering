@@ -25,7 +25,7 @@ const Add = () => {
     formData.append("image", image);
     formData.append("price", data.price);
     axios
-      .post("http://localhost:4000/api/food/add", formData)
+      .post("https://restaurant.waratechnology.com/api/food/add", formData)
       .then((res) => {
         console.log(res.data);
         setData({ name: "", description: "", category: "", price: null });

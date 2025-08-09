@@ -1,5 +1,6 @@
 const db = require("../../config/db");
 const { Chapa } = require("chapa-nodejs");
+const axios = require("axios");
 const {
   placeOrder,
   deletecart,
@@ -7,13 +8,12 @@ const {
   getorders,
   allOrder,
 } = require("./orders.service");
-const axios = require("axios");
 const requests = require("request");
 module.exports = {
   PlaceOrder: async (req, res) => {
     const userId = req.id;
     const { address, items, amount } = req.body.orderData;
-    // console.log(items)
+    console.log(process.env.CHAPAKEY);
     placeOrder({ userId, items, amount, address }, (err, result) => {
       if (err) return res.status(560).json({ success: false, msg: err });
       deletecart(userId, (err, result) => {
@@ -67,66 +67,59 @@ module.exports = {
               amount: amount,
               tx_ref: tx_ref,
               callback_url: `http://localhost:3000/callback`,
-              return_url: `http://localhost:3000/verify?success=true&orderID=${orderId}`,
+              return_url: `http://localhost:3000/verify?success=true&orderID=${orderId}&tx_ref=${tx_ref}`,
             }),
           };
-          //     callback_url: `http://localhost:3000/verify?success=true$orderID=${orderId}`,
-          //     cancel_url: `http://localhost:3000/verify?success=false$orderID=${orderId}`,
-          //     // callback_url: "https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60/",
-          //     // return_url: "https://example.com/",
           requests(options, function (error, response) {
             if (error)
               return res.status(601).json({ success: false, msg: error });
-            // console.log(response.body.status);
             const responsebody = JSON.parse(response.body);
-            console.log(responsebody)
-            console.log(responsebody.data.checkout_url);
-   // payment verification
-            var option = {
-              method: "GET",
-              url: `https://api.chapa.co/v1/transaction/verify/${tx_ref}`,
-              headers: {
-                Authorization: `Bearer ${process.env.CHAPAKEY}`,
-              },
-            };
-            requests(option, function (error, response) {
-              if (error) {
-                return res.status(701).json({ success: false, msg: error });
-              }
-              console.log(response.body);
-              return res.json(responsebody);
-            });
+            return res.json(responsebody);
           });
         });
       });
     });
   },
   verifyPayment: (req, res) => {
-    const { success, orderId } = req.body;
+    const { success, orderId, tx_ref } = req.body;
     const payment = true;
     console.log(req.body);
-    if (success == "true") {
-      verifyorders({ payment, orderId }, (err, result) => {
-        if (err) {
-          return res.status(346).json({ message: "error happens" });
+    const chapaKey = process.env.CHAPAKEY; // Load from .env file
+    axios
+      .get(`https://api.chapa.co/v1/transaction/verify/${tx_ref}`, {
+        headers: { Authorization: `Bearer ${chapaKey}` },
+      })
+      .then((response) => {
+        console.log(response.data.data.status);
+        if (response.data.data.status == "success") {
+          verifyorders({ payment, orderId }, (err, result) => {
+            if (err) {
+              return res.status(346).json({ message: "error happens" });
+            }
+            return res.json({ success: true, message: "Paid" });
+          });
+        } else {
+          const sql = "DELETE FROM orders WHERE id=?";
+          db.query(sql, [orderId], (err, result) => {
+            if (err) {
+              return res.status(432).json({ message: "error happens" });
+            }
+            return res.json({ success: false, message: "not paid" });
+          });
         }
-        return res.json({ success: true, message: "Paid" });
+      })
+      .catch((error) => {
+        console.error(
+          "Error verifying payment:",
+          error.response ? error.response.data : error.message
+        );
       });
-    } else {
-      const sql = "DELETE FROM orders WHERE id=?";
-      db.query(sql, [orderId], (err, result) => {
-        if (err) {
-          return res.status(432).json({ message: "error happens" });
-        }
-        return res.json({ success: false, message: "not paid" });
-      });
-    }
   },
   getOrders: (req, res) => {
     const userId = req.id;
     // console.log(userId
-const payment=1
-    getorders({userId,payment}, (err, result) => {
+    const payment = 1;
+    getorders({ userId, payment }, (err, result) => {
       if (err) {
         return res.status(699).json({ message: "successfuly fetched" });
       }
@@ -134,8 +127,8 @@ const payment=1
     });
   },
   getAllOrder: async (req, res) => {
-    const payment=1;
-    allOrder(payment,(err, result) => {
+    const payment = 1;
+    allOrder(payment, (err, result) => {
       if (err) {
         return res.status(850).json({ success: false, message: err });
       }

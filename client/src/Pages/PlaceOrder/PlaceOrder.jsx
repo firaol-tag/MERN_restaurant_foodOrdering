@@ -20,7 +20,7 @@ const PlaceOrder = () => {
     const value = e.target.value;
     setData((data) => ({ ...data, [name]: value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     const orderItems = [];
     food_list.map((item) => {
@@ -36,14 +36,14 @@ const PlaceOrder = () => {
       items: orderItems,
       amount: getTotalCartAmount() + 2,
     };
-    axios
+    await axios
       .post(
         `${url}/api/order/placeorder`,
         { orderData },
         { headers: { token } }
       )
       .then((res) => {
-      console.log(res.data.data.checkout_url)
+      console.log(res.data.data)
         window.location.replace(res.data.data.checkout_url);
       })
       .catch((err) => {

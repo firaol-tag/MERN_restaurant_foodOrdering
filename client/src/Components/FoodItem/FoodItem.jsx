@@ -7,12 +7,12 @@ const FoodItem = ({id,name,price,image,description}) => {
   // () => setItemCounter((prev) => prev + 1)
   const {cartItems,setCartItems, addCartItems,removeCartItem}=useContext(StoreContext)
   return (
-    <div className="food_item w-full m-auto border-md">
+    <div className="food_item w-full m-auto border-md rounded-md ">
       <div className="food-item-image-container">
         <img
-          src={"http://localhost:4000" + image}
+          src={"https://restaurant.waratechnology.com" + image}
           alt=""
-          className="food-item-image w-full h-40"
+          className="food-item-image w-full h-40 "
         />
 
         {!cartItems[id] ? (

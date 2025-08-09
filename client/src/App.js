@@ -18,7 +18,7 @@ const App = () => {
       ) : (
         <></>
       )}
-      <div className="app">
+      <div className="app ">
         <Navbar setShowLoginPopup={setShowLoginPopup} />
         <Routes>
           <Route path="/" element={<Home />} />
